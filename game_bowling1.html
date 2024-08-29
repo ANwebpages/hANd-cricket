@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hANd Cricket Game</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaWHssNQzdAUIdYvFQm-tIVCikHpOxTURvKw&s" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: chartreuse;
+            font-size: 60px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            border-color: black;
+            border: solid;
+            border-width: 3px;
+            width: 60px;
+            height:60px;
+            background-color: rgb(107, 232, 107);
+            font-size: 25px;
+        }
+        .replay-button{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: orange;
+            color:white;
+            font-size: 16px;
+            cursor: pointer;
+
+        }
+
+        .result {
+            font-size: 24px;
+            color: crimson;
+        }
+        .fresult{
+            font-size: 50px;
+            color: dodgerblue;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+        }
+        .back{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: red;
+            color:white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position:fixed;
+            top:10px;
+            left:10px;
+
+        }
+        .duck{
+            font-family:cursive;
+            color:red;
+            font-size: 40px;
+        }
+        .next-level{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color:rgb(8, 135, 30);
+            color:white;
+            font-size: 16px;
+            cursor: pointer
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="./levels_bowling.html">
+            <button class="back">Back</button>
+        </a>
+    </div>
+
+<div class="container">
+    <h1 >
+        𝗵<span style="color:blue;">𝗔𝗡</span>𝗱 
+𝗰𝗿𝗶𝗰𝗸𝗲𝘁
+    </h1>
+    <p style="font-size: 30px;" >You are bowling.</p>
+    <p style="font-family: fantasy;font-size:30px;">LEVEL 1</p>
+    <p style="font-size: 30px;"> Your score = 100 </p>
+    <div class="score">
+        <p>Computer Score: <span id="computerScore">0</span></p>
+    </div>
+    <div class="buttons">
+        <button onclick="playGame(1)">1</button>
+        <button onclick="playGame(2)">2</button>
+        <button onclick="playGame(3)">3</button>
+        <button onclick="playGame(4)">4</button>
+        <button onclick="playGame(5)">5</button>
+        <button onclick="playGame(6)">6</button>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="fresult" id="fresult"></div>
+    <div id="duck" class="duck"></div>
+    <div id="replay">
+        <a href="./game_bowling1.html"><button class="replay-button">Replay</button></a>
+    </div><br>
+    <div>
+        <a href="./game_bowling2.html"><button class="next-level">Next level</button></a>
+    </div>
+
+
+
+<script>
+    let computerScore = 0;
+    playerScore=100;
+
+    function playGame(playerChoice) {
+        const computerChoice = Math.floor(Math.random() * 6) + 1;
+
+        if (computerChoice === playerChoice) {
+            if (computerScore < playerScore)
+            {   document.getElementById('result').innerText = `Computer is out! You chose ${playerChoice}. Computer chose ${computerChoice}. Final Score: ${computerScore}`;
+                document.getElementById('fresult').innerText =`You won.`;
+                playGame=0;
+            }
+            else if (computerScore==playerScore)
+            {   document.getElementById('result').innerText = `Computer is out! You chose ${playerChoice}. Computer chose ${computerChoice}. Final Score: ${computerScore}`;
+                document.getElementById('fresult').innerText =`Match tied.`;
+                playGame=0;
+            } 
+        }
+        else {
+            computerScore += computerChoice;
+            document.getElementById('computerScore').innerText = computerScore;
+            document.getElementById('result').innerText = `You chose ${playerChoice}. Computer chose ${computerChoice}.`;
+            if(playerScore < computerScore){
+                document.getElementById('result').innerText = ` Final Score: ${computerScore}`;
+                document.getElementById('fresult').innerText =`You lose.`;
+                playGame=0;
+            }
+    }
+    if(computerScore==0)
+        {
+            document.getElementById('duck').innerText =`It's a DUCK.`;
+        }
+}
+    
+    
+</script>
+
+</body>
+</html>

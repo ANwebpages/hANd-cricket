@@ -65,7 +65,7 @@
             <button type="submit">Register</button>
         </form>
         <br>
-        <a href="./index.php">Back to Login</a>
+        <a href="./index.html">Back to Login</a>
     </div>
 </body>
 </html>
